@@ -1,17 +1,10 @@
-(function processCommands() {
-    /**
-     * TO DO
-     * Require commands
-     */
+define(['./commands/reverse', './commands/append', './commands/prepend'],
+    function processCommands(reverse, append, prepend) {
 
     let commands = {
-        reverse: function () {
-            if (arguments[0].length !== 0) {
-                throw new Error("Error: invalid command parameters");
-            }
-            arr.reverse();
-            terminal.value += arr.join(" ") + "\n";
-        }
+        reverse: reverse.reverse,
+        append: append.append,
+        prepend: prepend.prepend
     };
     let arr;
     let isInitialized = false;
@@ -25,7 +18,8 @@
         let commandTokens = input.value.trim().split(/\s+/);
         if (isInitialized) {
             try {
-                commands[commandTokens[0]](commandTokens.slice(1));
+                commands[commandTokens[0]](arr, commandTokens.slice(1));
+                terminal.value += arr.join(" ") + "\n";
             } catch (err) {
                 terminal.value += err.message + "\n";
             } finally {
@@ -38,4 +32,4 @@
             input.value = "";
         }
     }
-})();
+});
