@@ -22,7 +22,6 @@ define(['./commands/reverse', './commands/append', './commands/prepend', './comm
         if (isInitialized) {
             try {
                 let outputValue = commands[commandTokens[0]](arr, commandTokens.slice(1));
-                console.log(outputValue);
                 if(outputValue || outputValue === 0){
                     terminal.value += outputValue + "\n";
                 }
@@ -30,7 +29,12 @@ define(['./commands/reverse', './commands/append', './commands/prepend', './comm
                     terminal.value += arr.join(" ") + "\n";
                 }
             } catch (err) {
-                terminal.value += err.message + "\n";
+                if (err instanceof TypeError){
+                    terminal.value += 'Error: invalid command\n';
+                }
+                else {
+                    terminal.value += err.message + "\n";
+                }
             } finally {
                 input.value = "";
             }
