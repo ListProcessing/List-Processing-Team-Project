@@ -1,10 +1,11 @@
-define(['./commands/reverse', './commands/append', './commands/prepend'],
-    function processCommands(reverse, append, prepend) {
+define(['./commands/reverse', './commands/append', './commands/prepend', './commands/roll'],
+    function processCommands(reverse, append, prepend, roll) {
 
     let commands = {
         reverse: reverse.reverse,
         append: append.append,
-        prepend: prepend.prepend
+        prepend: prepend.prepend,
+        roll:roll.roll
     };
     let arr;
     let isInitialized = false;
