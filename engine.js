@@ -1,12 +1,13 @@
-define(['./commands/reverse', './commands/append', './commands/prepend', './commands/roll','./commands/insert'],
-    function processCommands(reverse, append, prepend, roll, insert) {
+define(['./commands/reverse', './commands/append', './commands/prepend', './commands/roll','./commands/insert', './commands/count'],
+    function processCommands(reverse, append, prepend, roll, insert, count) {
 
     let commands = {
         reverse: reverse.reverse,
         append: append.append,
         prepend: prepend.prepend,
         roll:roll.roll,
-        insert: insert.insert
+        insert: insert.insert,
+        count: count.count
     };
     let arr;
     let isInitialized = false;
@@ -20,8 +21,14 @@ define(['./commands/reverse', './commands/append', './commands/prepend', './comm
         let commandTokens = input.value.trim().split(/\s+/);
         if (isInitialized) {
             try {
-                commands[commandTokens[0]](arr, commandTokens.slice(1));
-                terminal.value += arr.join(" ") + "\n";
+                let outputValue = commands[commandTokens[0]](arr, commandTokens.slice(1));
+                console.log(outputValue);
+                if(outputValue || outputValue === 0){
+                    terminal.value += outputValue + "\n";
+                }
+                else {
+                    terminal.value += arr.join(" ") + "\n";
+                }
             } catch (err) {
                 terminal.value += err.message + "\n";
             } finally {
