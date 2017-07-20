@@ -1,5 +1,5 @@
-define(['./commands/reverse', './commands/append', './commands/prepend', './commands/roll','./commands/insert', './commands/count', './commands/delete'],
-    function processCommands(reverse, append, prepend, roll, insert, count, remove) {
+define(['./commands/reverse', './commands/append', './commands/prepend', './commands/roll','./commands/insert', './commands/count', './commands/delete', './commands/sort', './commands/end'],
+    function processCommands(reverse, append, prepend, roll, insert, count, remove, sort, end) {
 
     let commands = {
         reverse: reverse.reverse,
@@ -8,7 +8,9 @@ define(['./commands/reverse', './commands/append', './commands/prepend', './comm
         roll:roll.roll,
         insert: insert.insert,
         count: count.count,
-        'delete' : remove.remove
+        'delete' : remove.remove,
+        sort: sort.sort,
+        end: end.end,
     };
     let arr;
     let isInitialized = false;
